@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-red: #F41D19;
+    --primary-black: #1c1c1c;
+    --primary-blue: #005EB6;
+    --primary-green: #30670B;
+    --primary-yellow: #FFFF00;
+
+    --font-white: #ddd;
+
+
+    --box-shadow-normal: 0 0 15px rgba(0, 0, 0, 0.2);
+    --box-shadow-muted: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+
+    --bg-dark: hsl(0, 0%, 90%);
+    --bg: hsl(0, 0%, 95%);
+    --bg-light: hsl(0, 0%, 100%);
+    --text: hsl(0, 0%, 5%);
+    --text-muted: hsl(0, 0%, 30%);
+    --border: hsl(0, 0%, 95%);
+
+    --gradient: linear-gradient(0deg, var(--bg-dark)) 95%, var(var(--bg-light));
+
+    --border-card: solid 1px var(--bg-dark);
+
+}
+
+
+/* Allgemeines Styling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-dark);
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* Navigation */
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background-color: var(--bg);
+    margin: 0;
+    padding: 10px;
+    box-shadow: var(--box-shadow-normal);
+    transition: transform 0.5s ease;
+    z-index: 1000;
+}
+
+.top-nav.hide {
+    transform: translateY(-100%);
+}
+
+
+/* ---------- Left Side ---------- */
+.left-nav {
+    display: flex;
+    align-items: center;
+}
+
+.left-nav > a {
+    margin-top: 10px;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    color: black;
+    margin-left: 5px;
+}
+
+.subtitle {
+    margin-left: 5px;
+}
+
+
+/* ---------- Right Side ---------- */
+
+
+.right-nav {
+    display: flex;
+    flex-grow: 1;
+}
+
+.right-nav > ul {
+    display: flex;
+    flex-grow: 1;
+    list-style-type: none;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.right-nav > ul > li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 7px 0;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    border: 1px solid var(--bg);
+}
+
+.right-nav > ul > li img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.right-nav > ul > li > a {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.right-nav strong {
+    text-decoration: underline;
+}
+
+
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 45px;
+}
+
+
+/* Media Queries */
+
+/* Handy */
+
+@media (max-width: 690px) {
+
+    .title > h2 {
+        font-size: 23px;
+    }
+
+    .subtitle > h6 {
+        font-size: 10px;
+    }
+
+    .left-nav img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .right-nav > ul {
+        display: none;
+        flex-direction: column;
+        background-color: var(--bg);
+        position: absolute;
+        top: 40px;
+        right: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 35px;
+    }
+
+    h2 { font-size: 23px; }
+
+    .right-nav.open > ul {
+        display: flex;
+    }
+
+    .right-nav > ul > li:hover {
+        transform: scale(1.05);
+        transition: 0.4s ease-out;
+    }
+}
+
+@media (min-width: 690px) and (max-width: 992px) {
+
+    .right-nav > ul > li:hover {
+        transform: scale(1.15);
+        transition: 0.5s ease-out;
+    }
+}
+
+
+/* ---------- Desktop (min. 993px) ---------- */
+@media (min-width: 993px) {
+
+    .right-nav > ul > li:hover {
+        transform: translateY(-5%);
+        border: 0.5px solid black;
+        background-color: var(--font-white);
+    }
+}
+
+/* ---------- Extra Large Screens (min. 1400px) ---------- */
+@media (min-width: 1400px) {
+
+    .right-nav { max-width: 65vw; }
+}

@@ -1,0 +1,8 @@
+{
+  "[markdown]": {
+    "editor.wordWrap": "off"
+  },
+  "extensions.ignoreRecommendations": false,
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "workbench.startupEditor": "readme"
+}

@@ -5,8 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pfadi-website</title>
-    <script type="module" src="../src/main.ts"></script>
     <script src="https://kit.fontawesome.com/920aa667f6.js" crossorigin="anonymous"></script>
+    <script src="../src/main.ts" defer></script>
     <link rel="stylesheet" href="../styles/stufen.css">
     <link rel="stylesheet" href="../styles/nav.css">
     <link rel="stylesheet" href="../styles/root.css">
@@ -56,5 +56,36 @@
 
         </nav>
     </header>
+
+    <main>
+        <div id="events">
+
+        </div>
+    </main>
   </body>
+
+  <script>
+    console.log('Lade Events...');
+
+    async function ladeEvents() {
+        const res = await fetch('http://localhost:3000/api/events');
+        const events = await res.json();
+
+        const container = document.getElementById('events');
+        container.innerHTML = '';
+
+        for (const event of events) {
+            const el = document.createElement('div');
+            el.classList.add('event');
+            el.innerHTML = `
+                <h3>${event.title}</h3>
+                <p>${new Date(event.start).toLocaleString()}</p>
+                <p>${event.location}</p>
+                `;
+            container.appendChild(el);
+        }
+    }
+
+    ladeEvents();
+  </script>
 </html>

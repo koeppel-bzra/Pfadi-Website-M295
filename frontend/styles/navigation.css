@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #1b1b1b;
+}
+
+:root {
+    --font-white: rgba(181, 181, 181, 0.7);
+    --primary-white: rgba(219, 219, 219, 0.8);
+    --title-white: rgba(255, 255, 255);
+}
+ 
+body {
+    font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+hr {
+    border: 0.5px solid var(--font-white);
+    margin: 10px 0;
+    margin: 0 auto;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 10vh;
+}
+
+.top-nav span:first-child {
+    letter-spacing: 3px;
+}
+
+.top-nav span:last-child {
+    font-size: 18px;
+    color: var(--font-white);
+}
+
+
+.top-nav h1 {
+    color: var(--title-white);
+    padding: 15px 20px;
+    font-size: 45px;
+    margin-left: 10px;
+}
+
+.links a {
+    color: var(--font-white);
+    text-decoration: none;
+    padding: 25px 20px;
+    display: block;
+    font-size: 25px;
+    margin-left: 20px;
+    transition: 0.5s ease;
+}
+
+.top-nav a:hover {
+    color: var(--primary-white);
+    transition: 0.5s ease;
+}
+
+.links {
+    display: flex;
+    margin-right: 30px;
+    flex-wrap: wrap;
+}
+
+main {
+    padding: 15px 20px;
+}
+
+.begruessung {
+    text-align: center;
+    font-size: 20px;
+    color: var(--primary-white);
+}
+
+.top-nav > a {
+    text-decoration: none;
+
+}
+
+.underline {
+    text-decoration: underline;
+    color: var(--primary-white);
+}

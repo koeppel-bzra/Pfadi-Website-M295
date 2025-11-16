@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pfadi Website</title>
+        <link rel="stylesheet" href="../styles/navigation.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script type="module" src="../src/views/create.ts"></script>
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <a href="../index.html"><h1>PFADI <span>Regulastein</span> <span>Gommiswald - Erntschwil - Rieden</span></h1></a>
+            <div class="links">
+                <a href="./agenda.html"><div class="underline">Agenda</div></a>
+                <a href="./mitglied-werden.html"><strong>Mitglied werden</strong></a>
+                <a href="./stufen.html">Stufen</a>
+                <a href="./login.html" class="anmeldung-icon" title="Anmeldung"><i class="fa-solid fa-user"></i></a>
+            </div>
+        </nav>
+    </header>
+    <hr>
+        <main>
+        <form class="view">
+            <section class="values">
+                <label>
+                    <span>Titel: </span>
+                    <input type="text" id="edit-title" placeholder="z. B. Pfadiübung" required>
+                </label>
+                <label>
+                    <span>Ort: </span>
+                    <input type="text" id="edit-location" placeholder="z. B. Burgerwald" value="">
+                </label>
+                <label>
+                    <span>Mitnehmen: </span>
+                    <input type="text" id="edit-mitnehmen" placeholder="z. B. Trinkflasche, Zvieri" value="">
+                </label>
+                <label>
+                    <span>Datum: </span>
+                    <input type="date" id="edit-date" placeholder="z. B. " value="">
+                </label>
+                <button type="submit">Speichern</button>
+            </section>
+        </form>
+        <div class="back">
+            <a href="./agenda.html">Back</a>
+         </div>
+    </main>
+</body>
+</html> 

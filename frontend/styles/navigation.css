@@ -9,6 +9,7 @@
     --font-white: rgba(181, 181, 181, 0.7);
     --primary-white: rgba(219, 219, 219, 0.8);
     --title-white: rgba(255, 255, 255);
+    --background-black: rgb(42, 41, 41);
 }
  
 body {
@@ -83,4 +84,69 @@ main {
 .underline {
     text-decoration: underline;
     color: var(--primary-white);
+}
+
+.create a {
+    color: var(--primary-white);
+    background-color: var(--background-black);
+    display: flex;
+    padding: 10px;
+    text-decoration: none;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 370px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.create a:hover {
+    background-color: var(--primary-white);
+    color: var(--background-black);
+    transition: 0.5s ease;
+}
+
+.values {
+    color: var(--primary-white);
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.values span {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.values input {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    color: var(--font-white);
+}
+
+.back a {
+    color: var(--font-white);
+}
+
+.termin-item {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.termin-item h3 {
+    color: var(--title-white);
+    font-size: 30px;
+}
+
+.termin-item p {
+    color: var(--primary-white);
+    font-size: 20px;
 }

@@ -16,6 +16,7 @@ async function renderAgenda() {
                 <p>Ort: ${termin.location}</p>
                 <p>Mitnehmen: ${termin.mitnehmen}</p>
                 <p>Datum: ${termin.date}</p>
+                <hr>
             </li>
         `;
     }

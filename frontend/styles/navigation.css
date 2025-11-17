@@ -5,6 +5,10 @@
     background-color: #1b1b1b;
 }
 
+h3 {
+
+}
+
 :root {
     --font-white: rgba(181, 181, 181, 0.7);
     --primary-white: rgba(219, 219, 219, 0.8);
@@ -93,7 +97,7 @@ main {
     padding: 10px;
     text-decoration: none;
     justify-content: center;
-    margin: 0 auto;
+    margin: 40px auto;
     width: 80%;
     max-width: 370px;
     border-radius: 5px;
@@ -111,22 +115,29 @@ main {
     color: var(--primary-white);
     font-size: 18px;
     margin: 20px 0;
+    display: flex;
+    gap: 30px;
 }
 
 .values span {
     margin-right: 10px;
     margin-left: 10px;
+    font-size: 25px;
 }
 
 .values input {
     width: 200px;
-    height: 30px;
+    height: 25px;
     font-size: 15px;
     color: var(--font-white);
+    background-color: var(--background-black);
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .back a {
     color: var(--font-white);
+    font-size: 20px;
 }
 
 .termin-item {
@@ -137,8 +148,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: left;
-    padding: 15px;
-    margin-top: 30px;
+    padding-top: 10px;
 }
 
 .termin-item h3 {
@@ -149,4 +159,22 @@ main {
 .termin-item p {
     color: var(--primary-white);
     font-size: 20px;
+}
+
+.termin-item hr {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.submit-button {
+    color: var(--primary-white);
+    font-size: 20px;
+    margin-left: 10px;
+    transition: 0.5s ease;
+}
+
+.submit-button:hover {
+    cursor: pointer;
+    color: var(--title-white);
+    transition: 0.5s ease;
 }

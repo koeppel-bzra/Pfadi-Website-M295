@@ -32,3 +32,15 @@ export async function addTermin(token: string, termin: Termin): Promise<Termin> 
     const data = await request.json();
     return data;
 }
+
+export async function deleteTermin(token: string, id: string) : Promise<number> {
+    const request = await fetch(`${environment.apiRoot}/programm/${id}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        method: 'DELETE',
+    });
+    return request.status;
+}

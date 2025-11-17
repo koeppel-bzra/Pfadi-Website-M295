@@ -171,7 +171,7 @@ main {
     transition: 0.5s ease;
 }
 
-termin-item *:hover {
+.termin-item *:hover {
     cursor: pointer;
 }
 
@@ -190,6 +190,26 @@ termin-item *:hover {
 .termin-item p {
     color: var(--primary-white);
     font-size: 17px;
+}
+
+.termin-item button {
+    font-size: 17px;
+    background-color: var(--background-black2);
+    text-align: left;
+    color: var(--font-white);
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    padding: 5px 10px;
+    max-width: fit-content;
+    border-radius: 10px;
+    transition: 0.5s ease;
+    margin-top: 10px;
+}
+
+.termin-item button:hover {
+    cursor: pointer;
+    background-color: var(--primary-white);
+    color: var(--background-black2);
+    transition: 0.5s ease;
 }
 
 #datum {

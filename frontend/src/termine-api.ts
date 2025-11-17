@@ -1,6 +1,7 @@
 export const environment = { apiRoot: 'http://localhost:3000/api' };
 
 export declare type Termin = {
+    _id?: string;
     title: string;
     location: string;
     mitnehmen?: string;

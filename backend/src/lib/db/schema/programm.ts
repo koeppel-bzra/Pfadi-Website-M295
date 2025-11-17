@@ -3,6 +3,7 @@ import {z} from 'zod';
 
 export const Programm = z.object({
     _id: z.string().optional(),
+    kategorieId: z.string(),
     title: z.string(),
     location: z.string(),
     mitnehmen: z.string().optional(),

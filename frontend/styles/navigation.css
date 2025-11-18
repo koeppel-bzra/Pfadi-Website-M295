@@ -289,3 +289,10 @@ main {
     font-size: 25px;
     text-decoration: underline;
 }
+
+
+#category {
+    color: var(--font-white);
+    margin-left: 10px;
+    font-size: 15px;
+}

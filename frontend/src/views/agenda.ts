@@ -37,6 +37,7 @@ async function terminLoeschen(termin: Termin) {
   await deleteTermin(token!, termin._id);
   termine = termine.filter((t) => t._id !== termin._id);
   renderAgenda();
+  clearDetail();
 }
 
 
@@ -87,13 +88,30 @@ function renderDetail(id: string) {
 
   detailDiv.innerHTML = `
     <li class="termin-detail">
-      <h3>${termin.title} am ${date}</h3>
+      <div class="container">
+        <h3>${termin.title} am ${date}</h3>
+        <button title="close" id="closeDetail" type="button">❌</button>
+      </div>
       <p>Ort: ${termin.location}</p>
       <p>Mitnehmen: ${termin.mitnehmen ?? "-"}</p>
       <p>Datum: ${date}</p>
       <p>Kategorie: ${kName}</p>
     </li>
   `;
+
+  document.querySelector('#closeDetail').addEventListener('click', (e) => {
+    clearDetail();
+  })  
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  })
+}
+
+function clearDetail() {
+    const detailDiv = document.querySelector("#detail");
+    detailDiv.innerHTML = ``;
 }
 
 

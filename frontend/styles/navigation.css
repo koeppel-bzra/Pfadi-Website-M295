@@ -296,3 +296,19 @@ main {
     margin-left: 10px;
     font-size: 15px;
 }
+
+
+#closeDetail {
+    color: white;
+    font-size: 20px;
+}
+
+#closeDetail:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}

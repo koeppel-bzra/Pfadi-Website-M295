@@ -96,6 +96,7 @@ main {
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
+    padding-top: 50px;
 }
 
 .title-create a {
@@ -334,4 +335,30 @@ main {
     padding: 5px;
     border-radius: 10px;
     color: var(--title-white);
+}
+
+
+.anleitung {
+    color: var(--primary-white);
+    font-size: 25px;
+    text-align: center;
+    line-height: 60px;
+    margin-bottom: 30px;
+}
+
+.anleitung span {
+    color: var(--font-white);
+}
+
+.category-item {
+    display: flex;
+    color: var(--title-white);
+    padding: 10px;
+    justify-content: right;
+    margin-right: 10px;
+}
+
+.category-item > p {
+    padding: 5px;
+    border-radius: 10px;
 }

@@ -148,10 +148,8 @@ function renderDetail(id: string) {
     clearDetail();
   });
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  const elementToScrollTo = document.querySelector('.title-create');
+  elementToScrollTo.scrollIntoView({ behavior: 'smooth' })
 }
 
 
@@ -159,6 +157,22 @@ function renderDetail(id: string) {
 function clearDetail() {
   const detailDiv = document.querySelector("#detail");
   detailDiv.innerHTML = ``;
+}
+
+
+
+function renderKategorien() {
+  const categoryViewValue = document.querySelector('#data-category')
+
+  categoryViewValue.innerHTML = "";
+
+  for (const kategorie of kategorien) {
+
+    categoryViewValue.innerHTML += `
+      <div class="category-item" data-id="${kategorie._id ?? ""}">
+        <p style="background-color: ${colorMap[kategorie.farben?.[0]]}">${kategorie.name}</p>
+      </div>`
+  }
 }
 
 
@@ -202,5 +216,6 @@ function bindUIHandlers() {
 await loadTermine();
 bindUIHandlers();
 renderAgenda();
+renderKategorien();
 
 console.log("Termine geladen:", termine);

@@ -173,7 +173,7 @@ main {
 
 .termin-item {
     background-color: var(--background-black);
-    max-width: 20vw;
+    max-width: 40vh;
     padding: 15px;
     border-radius: 20px;
     margin: 20px 10px;

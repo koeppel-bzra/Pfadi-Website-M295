@@ -12,13 +12,14 @@ let termine: Termin[] = [];
 let kategorien: Kategorie[] = [];
 
 
+// Get Funktion für Kategorien Name
 function getKategorieName(id?: string): string {
   if (!id) return "Keine";
   const k = kategorien.find((c) => c._id === id);
-  return k ? k.name : "Unbekannt";
+  return k ? k.name : "Unbekannt"; // Fragezeichen und Doppelpunkt ersetzen if-Abfrage
 }
 
-const colorMap: Record<string, string> = {
+const colorMap: Record<string, string> = { // Schlüssel ist string, Wert ist string --> Wandelt die Farbnamen in CSS Farben um
   rot: "red",
   blau: "rgb(78, 146, 169)",
   grün: "rgba(15, 149, 64, 1)",
@@ -26,11 +27,12 @@ const colorMap: Record<string, string> = {
   orange: "rgba(168, 115, 0, 1)"
 };
 
+
+// Get Funktion für Farben
 function getKategorieFarbe(id: string): string {
   if (!id) return 'transperant';
 
   const k = kategorien.find((c) => c._id === id)
-  if (!Array.isArray(k.farben)) return "transparent"; // Prüft ob es wirklich ein Array ist --> Gegen Kategorien gut die keine Farbe zugewiesen haben
 
   const oldColor = k.farben[0];
 
@@ -128,7 +130,7 @@ function renderDetail(id: string) {
 
   const date = termin.date
     ? new Date(termin.date).toLocaleDateString("de-CH")
-    : "Kein Datum";
+    : "-";
 
   detailDiv.innerHTML = `
     <li class="termin-detail">

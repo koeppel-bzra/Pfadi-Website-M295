@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pfadi Website</title>
+        <link rel="stylesheet" href="../styles/navigation.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script type="module" src="../src/views/create-category.ts"></script>
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <a href="../index.html"><h1>PFADI <span>Regulastein</span> <span>Gommiswald - Erntschwil - Rieden</span></h1></a>
+            <div class="links">
+                <a href="./agenda.html"><div class="underline">Agenda</div></a>
+                <a href="./mitglied-werden.html"><strong>Mitglied werden</strong></a>
+                <a href="./stufen.html">Stufen</a>
+                <a href="./login.html" class="anmeldung-icon" title="Anmeldung"><i class="fa-solid fa-user"></i></a>
+            </div>
+        </nav>
+    </header>
+    <hr>
+        <main>
+        <form class="view">
+            <section class="values">
+                <label>
+                    <span>Name: </span>
+                    <input type="text" id="edit-name" placeholder="z. B. Pfadiübung" required>
+                </label>
+                <label>
+                    <span>Farbe:</span>
+                    <select title="category" id="edit-color" required>
+                        <option value="">Auswählen</option>
+                        <option value="rot">Rot</option>
+                        <option value="blau">Blau</option>
+                        <option value="grün">Grün</option>
+                        <option value="gelb">Gelb</option>
+                        <option value="orange">Orange</option>
+                    </select>
+                </label>
+                <button class="submit-button" type="submit">Speichern</button>
+            </section>
+        </form>
+        <div class="back">
+            <a href="./agenda.html">Zurück</a>
+         </div>
+    </main>
+</body>
+</html> 

@@ -3,6 +3,7 @@ export const environment = { apiRoot: 'http://localhost:3000/api' };
 export type Kategorie = {
     _id?: string;
     name: string;
+    farben: Array<"rot" | "blau" | "grün" | "gelb" | "orange" >;
 };
 
 export async function getKategorien(): Promise<Kategorie[]> {
@@ -14,7 +15,7 @@ export async function getKategorien(): Promise<Kategorie[]> {
     return await request.json();
 }
 
-export async function addKategorie(kategorie: Kategorie): Promise<Kategorie> {
+export async function addKategorie(token: string, kategorie: Kategorie): Promise<Kategorie> {
     const request = await fetch(`${environment.apiRoot}/categories`, {
         method: 'POST',
         headers: {

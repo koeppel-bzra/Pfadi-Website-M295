@@ -91,6 +91,13 @@ main {
     color: var(--primary-white);
 }
 
+.title-create {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
 .title-create a {
     color: var(--primary-white);
     background-color: var(--background-black);
@@ -98,7 +105,6 @@ main {
     padding: 10px;
     text-decoration: none;
     justify-content: center;
-    margin: 40px auto;
     max-width: 20vw;
     border-radius: 10px;
     cursor: pointer;
@@ -311,4 +317,21 @@ main {
     display: flex;
     justify-content: space-between;
     gap: 30px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions-category {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions-category p {
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    color: var(--title-white);
 }

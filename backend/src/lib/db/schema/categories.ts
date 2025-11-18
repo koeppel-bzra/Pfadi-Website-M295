@@ -1,9 +1,12 @@
 import Datastore from '@seald-io/nedb';
 import { z } from 'zod';
 
+const Farben = z.enum(["rot", "blau", "grün", "gelb", "orange"])
+
 export const Kategorie = z.object({
     _id: z.string().optional(),
     name: z.string(),
+    farben: z.array(Farben).nonempty()
 })
 
 

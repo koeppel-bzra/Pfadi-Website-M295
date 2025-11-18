@@ -9,7 +9,8 @@ export async function initializeData() {
 
     if (dbEmpty) {
         await kategorieDb().insertAsync( {
-            name: "Lager"
+            name: "Lager",
+            farben: ["blau"]
         }) 
     }
 }

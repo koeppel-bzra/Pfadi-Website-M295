@@ -10,6 +10,8 @@ async function loadEditData() {
 
     const token = localStorage.getItem("jwt-token");
     const kategorien = await getKategorien(token);
+    const anzahl = kategorien.length
+    console.log(anzahl)
     editKategorieData = kategorien.find(k => k._id === id) ?? null;
 
     if (editKategorieData) {

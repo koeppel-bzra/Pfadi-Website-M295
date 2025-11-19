@@ -53,6 +53,7 @@ async function terminLoeschen(termin: Termin) {
   termine = termine.filter(t => t._id !== termin._id);
 
   renderAgenda();
+  renderKategorien();
   clearDetail();
 }
 
@@ -150,14 +151,23 @@ function renderKategorien() {
 
   categoryView.innerHTML = "";
 
+
+
   for (const kategorie of kategorien) {
+    
+    const anzahlTermine = termine.filter(t => t.kategorieId === kategorie._id).length
+
     categoryView.innerHTML += `
       <div style="background-color: ${colorMap[kategorie.farben?.[0]]}" class="category-item" data-id="${kategorie._id ?? ""}">
-      <p>${kategorie.name}</p>
-          <div class="category-buttons">
-            <button class="delete-button" data-id="${kategorie._id ?? ""}">Löschen</button>
-            <button class="edit-button" dataid="${kategorie._id ?? ""}">Bearbeiten</button>
-          </div>
+        <div class="top-category">
+          <p>${kategorie.name}</p>
+          <p>${anzahlTermine}</p>
+        </div>
+
+        <div class="category-buttons">
+          <button class="delete-button" data-id="${kategorie._id ?? ""}">Löschen</button>
+          <button class="edit-button" dataid="${kategorie._id ?? ""}">Bearbeiten</button>
+        </div>
       </div>
     `;
   }

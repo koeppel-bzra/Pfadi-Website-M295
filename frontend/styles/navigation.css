@@ -357,24 +357,6 @@ main {
 }
 
 
-
-.category-item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
-    padding: 8px 12px;
-    margin-right: 10px;
-    border-radius: 10px;
-}
-
-
-.category-item > p {
-    padding: 6px 10px;
-    border-radius: 8px;
-    color: var(--title-white);
-}
-
 #edit-color {
     background-color: #1b1b1b;
     color: var(--primary-white);
@@ -391,60 +373,44 @@ main {
 }
 
 
-.category-item {
-    display: flex;
-}
 
 
 .category-item {
-    display: flex;
-    flex-direction: column; /* Buttons unter dem Namen */
-    align-items: flex-start; /* linksbündig */
-    padding: 8px 12px;
-    margin-right: 10px;
-    border-radius: 10px;
-    background-color: var(--background-black2);
-    margin-bottom: 30px;
-
-}
-
-.category-item > p {
-    padding: 6px 10px;
+    padding: 10px;
     border-radius: 8px;
-    color: var(--title-white);
-    font-weight: bold;
-    font-size: 18px;
+    color: white; /* falls Hintergrund dunkel */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 
+.top-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Buttons nebeneinander */
 .category-buttons {
     display: flex;
-    gap: 12px; 
+    gap: 10px;
 }
 
 .category-buttons button {
-    width: 6vw;
-    padding: 8px 0;
+    padding: 6px 12px;
     border: none;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
+    border-radius: 6px;
+    font-size: 12px;
+    background-color: rgb(207, 207, 207);
     cursor: pointer;
-    font-size: 14px;
-    background-color: var(--font-white);
     transition: 0.5s ease;
 }
 
-
-.edit-button:hover {
+.category-buttons button:hover {
     background-color: white;
-    color: black;
     transition: 0.5s ease;
 }
 
-.delete-button:hover {
-    background-color: white;
-    color: black;
-    transition: 0.5s ease;
-}
 

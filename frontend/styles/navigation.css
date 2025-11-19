@@ -121,6 +121,7 @@ main {
     transition: 0.5s ease;
 }
 
+
 .create p {
     color: var(--title-white);
     margin: 20px 20px;
@@ -388,3 +389,62 @@ main {
 .title > h1 {
     color: var(--primary-white);
 }
+
+
+.category-item {
+    display: flex;
+}
+
+
+.category-item {
+    display: flex;
+    flex-direction: column; /* Buttons unter dem Namen */
+    align-items: flex-start; /* linksbündig */
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: var(--background-black2);
+    margin-bottom: 30px;
+
+}
+
+.category-item > p {
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: var(--title-white);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.category-buttons {
+    display: flex;
+    gap: 12px; 
+}
+
+.category-buttons button {
+    width: 6vw;
+    padding: 8px 0;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: var(--font-white);
+    transition: 0.5s ease;
+}
+
+
+.edit-button:hover {
+    background-color: white;
+    color: black;
+    transition: 0.5s ease;
+}
+
+.delete-button:hover {
+    background-color: white;
+    color: black;
+    transition: 0.5s ease;
+}
+

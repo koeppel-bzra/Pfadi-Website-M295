@@ -6,7 +6,7 @@ export type Kategorie = {
     farben: Array<"rot" | "blau" | "grün" | "gelb" | "orange" >;
 };
 
-export async function getKategorien(): Promise<Kategorie[]> {
+export async function getKategorien(token: string): Promise<Kategorie[]> {
     const request = await fetch(`${environment.apiRoot}/categories`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -25,4 +25,30 @@ export async function addKategorie(token: string, kategorie: Kategorie): Promise
     });
 
     return await request.json();
+}
+
+export async function editKategorie(token: string, category: Kategorie): Promise<Kategorie> {
+    const request = await fetch(`${environment.apiRoot}/categories/${category._id}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        method: 'PUT',
+        body: JSON.stringify(category),
+    });
+    return await request.json();
+}
+
+export async function deleteKategorie(token: string, id: string): Promise<number> {
+    const request = await fetch(`${environment.apiRoot}/categories/${id}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        method: 'DELETE',
+    });
+
+    return request.status;
 }

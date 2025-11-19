@@ -23,7 +23,8 @@ async function loadEditData() {
 // lade kategorien
 async function loadCategories() {
     const select = document.querySelector('#category') as HTMLSelectElement;
-    const kategorien = await getKategorien();
+    const token = localStorage.getItem("jwt-token");
+    const kategorien = await getKategorien(token);
 
     for (const k of kategorien) {
         const opt = document.createElement('option');

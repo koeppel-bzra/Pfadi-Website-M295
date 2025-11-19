@@ -1,5 +1,5 @@
 import { getTermine, deleteTermin, type Termin, editTermin } from "../termine-api.js";
-import { getKategorien } from "../category-api.js";
+import { getKategorien, editKategorie, deleteKategorie  } from "../category-api.js";
 
 type Kategorie = {
   _id?: string;
@@ -18,7 +18,8 @@ const colorMap: Record<string, string> = {
   orange: "rgba(168, 115, 0, 1)"
 };
 
-// Hilfsfunktionen
+
+// Get Funktionen
 function getKategorieName(id?: string): string {
   if (!id) return "Keine";
   const k = kategorien.find(c => c._id === id);
@@ -32,6 +33,7 @@ function getKategorieFarbe(id: string): string {
   return colorMap[oldColor ?? ""] ?? 'transparent';
 }
 
+
 // Sortierung
 function aufsteigendSortieren() {
   termine.sort((a, b) => new Date(a.date ?? 0).getTime() - new Date(b.date ?? 0).getTime());
@@ -40,6 +42,7 @@ function aufsteigendSortieren() {
 function absteigendSortieren() {
   termine.sort((a, b) => new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime());
 }
+
 
 // Termine löschen
 async function terminLoeschen(termin: Termin) {
@@ -53,10 +56,22 @@ async function terminLoeschen(termin: Termin) {
   clearDetail();
 }
 
+async function kategorieLöschen(category: Kategorie) {
+  const token = localStorage.getItem("jwt-token");
+  if (!category._id) return;
+
+  await deleteKategorie(token!, category._id);
+  kategorien = kategorien.filter(k => k._id !== category._id);
+
+  renderAgenda()
+  renderKategorien();
+  clearDetail();
+}
+
 // Termine laden
 async function loadTermine() {
   const token = localStorage.getItem("jwt-token");
-  kategorien = await getKategorien();
+  kategorien = await getKategorien(token);
   termine = await getTermine(token!);
 }
 
@@ -121,44 +136,6 @@ function renderDetail(id: string) {
   document.querySelector("#closeDetail")?.addEventListener("click", () => clearDetail());
 }
 
-// Edit-View rendern
-function renderEditView(termin: Termin) {
-  const detail = document.querySelector("#detail");
-  if (!detail) return;
-
-  detail.innerHTML = `
-    <div class="edit-view">
-      <h3>Termin bearbeiten</h3>
-
-      <label>Titel</label>
-      <input id="edit-title" value="${termin.title}">
-
-      <label>Ort</label>
-      <input id="edit-location" value="${termin.location}">
-
-      <label>Mitnehmen</label>
-      <input id="edit-mitnehmen" value="${termin.mitnehmen ?? ""}">
-
-      <label>Datum</label>
-      <input id="edit-date" type="date" value="${termin.date?.split("T")[0] ?? ""}">
-
-      <label>Kategorie</label>
-      <select id="category">
-        ${kategorien.map(k =>
-          `<option value="${k._id}" ${k._id === termin.kategorieId ? "selected" : ""}>${k.name}</option>`
-        ).join("")}
-      </select>
-
-      <button id="save-edit">Speichern</button>
-    </div>
-  `;
-
-  document.querySelector("#save-edit")?.addEventListener("click", async () => {
-    await saveEditView(termin);
-    renderAgenda();
-    renderDetail(termin._id!);
-  });
-}
 
 // Detail löschen
 function clearDetail() {
@@ -175,12 +152,45 @@ function renderKategorien() {
 
   for (const kategorie of kategorien) {
     categoryView.innerHTML += `
-      <div class="category-item" data-id="${kategorie._id ?? ""}">
-        <p style="background-color: ${colorMap[kategorie.farben?.[0]]}">${kategorie.name}</p>
+      <div style="background-color: ${colorMap[kategorie.farben?.[0]]}" class="category-item" data-id="${kategorie._id ?? ""}">
+      <p>${kategorie.name}</p>
+          <div class="category-buttons">
+            <button class="delete-button" data-id="${kategorie._id ?? ""}">Löschen</button>
+            <button class="edit-button" dataid="${kategorie._id ?? ""}">Bearbeiten</button>
+          </div>
       </div>
     `;
   }
 }
+
+  const list = document.querySelector("#data-category");
+  list?.addEventListener("click", (evt) => {
+    const target = evt.target as HTMLElement;
+    const item = target.closest(".category-item") as HTMLElement | null;
+    if (!item) return;
+
+    const id = item.dataset.id ?? "";
+
+    if (target.classList.contains("delete-button")) {
+      const category = kategorien.find(t => t._id === id);
+      if (category && confirm("Willst du diese Kategorie wirklich löschen")) {
+        kategorieLöschen(category);
+      }
+      return;
+    }
+
+    if (target.classList.contains("edit-button")) {
+      const id = item.dataset.id;
+      if (id) {
+        window.location.href = `create-category.html?id=${id}` // Weiterleiten auf create.ts um es zu bearbeiten
+      }
+    }
+
+    renderDetail(id);
+    renderKategorien();
+  });
+
+
 
 // UI Handler binden
 function bindUIHandlers() {
@@ -193,6 +203,8 @@ function bindUIHandlers() {
     absteigendSortieren();
     renderAgenda();
   });
+
+
 
   const list = document.querySelector("#data");
   list?.addEventListener("click", (evt) => {

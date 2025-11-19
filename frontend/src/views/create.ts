@@ -1,47 +1,80 @@
-import { type Termin, addTermin } from "../termine-api.js";
+import { type Termin, addTermin, editTermin, getTermine } from "../termine-api.js";
 import { getKategorien } from "../category-api.js";
 
-async function createEditView() {
-    const title = (document.querySelector("#edit-title") as HTMLInputElement).value;
-    const location = (document.querySelector("#edit-location") as HTMLInputElement).value;
-    const mitnehmen = (document.querySelector("#edit-mitnehmen") as HTMLInputElement).value;
-    const date = (document.querySelector("#edit-date") as HTMLInputElement).value;
+let editTerminData: Termin | null = null;
 
-    const categorySelect = document.querySelector('#category') as HTMLSelectElement;
-    const categoryId = categorySelect.value;
+async function loadEditData() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    if (!id) return;
 
     const token = localStorage.getItem("jwt-token");
+    const termine = await getTermine(token!);
+    editTerminData = termine.find(t => t._id === id) ?? null;
 
-    const newTermin: Termin = {
-        title,
-        location,
-        mitnehmen: mitnehmen || undefined,
-        date: date ? new Date(date).toISOString() : undefined,
-        kategorieId: categoryId
-    };
-
-    await addTermin(token!, newTermin);
-    document.location.href = "./agenda.html";
+    if (editTerminData) {
+        (document.querySelector("#edit-title") as HTMLInputElement).value = editTerminData.title;
+        (document.querySelector("#edit-location") as HTMLInputElement).value = editTerminData.location;
+        (document.querySelector("#edit-mitnehmen") as HTMLInputElement).value = editTerminData.mitnehmen ?? "";
+        (document.querySelector("#edit-date") as HTMLInputElement).value = editTerminData.date?.split("T")[0] ?? "";
+    }
 }
 
+// lade kategorien
 async function loadCategories() {
     const select = document.querySelector('#category') as HTMLSelectElement;
     const kategorien = await getKategorien();
 
-    for (const k of kategorien) { // Kategorien werden im Foor Loop ausgegeben
-        const opt = document.createElement('option'); // Erstellt ein neues Option Element
+    for (const k of kategorien) {
+        const opt = document.createElement('option');
         opt.value = k._id!;
         opt.textContent = k.name;
         select.appendChild(opt);
     }
+
+
+    if (editTerminData) {
+        select.value = editTerminData.kategorieId ?? "";
+    }
 }
 
-await loadCategories();
 
-document.querySelector('form')!.addEventListener("submit", (e) => {
+document.querySelector('form')!.addEventListener("submit", async (e) => {
     e.preventDefault();
-    createEditView();
+
+    const title = (document.querySelector("#edit-title") as HTMLInputElement).value;
+    const location = (document.querySelector("#edit-location") as HTMLInputElement).value;
+    const mitnehmen = (document.querySelector("#edit-mitnehmen") as HTMLInputElement).value;
+    const date = (document.querySelector("#edit-date") as HTMLInputElement).value;
+    const categorySelect = document.querySelector('#category') as HTMLSelectElement;
+    const categoryId = categorySelect.value;
+    const token = localStorage.getItem("jwt-token");
+
+    //Auswahl ob ein Termin editiert wird oder einer kreiert wird
+    if (editTerminData) {
+        // Bearbeiten
+        editTerminData.title = title;
+        editTerminData.location = location;
+        editTerminData.mitnehmen = mitnehmen;
+        editTerminData.date = date ? new Date(date).toISOString() : undefined;
+        editTerminData.kategorieId = categoryId;
+
+        await editTermin(token, editTerminData);
+        
+    } else {
+        // Neu erstellen
+        await addTermin(token!, {
+            title,
+            location,
+            mitnehmen: mitnehmen || undefined,
+            date: date ? new Date(date).toISOString() : undefined,
+            kategorieId: categoryId
+        });
+    }
+
+    window.location.href = "./agenda.html";
 });
 
-// Zuerst werden die Kategorien geladen, damit sie im Select Element angezeigt werden können. 
-// Danach wird der Event Listener für das Formular hinzugefügt, um die Erstellung eines neuen Termins zu handhaben.
+// Init
+await loadCategories();
+await loadEditData();

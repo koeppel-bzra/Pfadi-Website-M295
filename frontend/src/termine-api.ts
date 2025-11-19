@@ -35,6 +35,19 @@ export async function addTermin(token: string, termin: Termin): Promise<Termin> 
     return await request.json();
 }
 
+export async function editTermin(token: string, termin: Termin): Promise<Termin> {
+    const request = await fetch(`${environment.apiRoot}/programm/${termin._id}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        method: 'PUT',
+        body: JSON.stringify(termin),
+    });
+    return await request.json();
+}
+
 export async function deleteTermin(token: string, id: string): Promise<number> {
     const request = await fetch(`${environment.apiRoot}/programm/${id}`, {
         headers: {

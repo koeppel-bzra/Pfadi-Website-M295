@@ -1,41 +1,75 @@
 import { NextRequest } from "next/server";
 import { Programm, programmDb } from "@/lib/db/schema/programm"
+import { verifyToken } from "@/lib/jwt/jwt-generator";
+import { getJwtHeader } from "@/lib/jwt/jwt-auth";
 
 
 declare type PathParams = { params: Promise<{ id: string }> };
 
 export async function GET(request: NextRequest, context: PathParams) {
+    //Zugriff nur für angemeldete Benutzer
+    const jwtToken = getJwtHeader(request)
+    const { _userId, role } = await verifyToken(jwtToken)
+    if (!_userId) {
+        return Response.json({ message: 'Unauthorized' }, { status: 401 })
+    }
+
+
+
     const { id } = await context.params;
     const termin = await programmDb().findOneAsync({ _id: id });
 
-    if (termin) {
-        return Response.json(termin, { status: 200 });
+    if (!termin) {
+        return Response.json({ message: 'Termin nicht gefunden' }, { status: 404 })
     }
 
-    return Response.json(
-         { message: 'Termin nicht gefunden' },
-         { status: 404 },
-    )
+    // Benutzer darf nur eigene Termine einsehen
+    if (termin._userId !== _userId && role !== "admin") {
+        return Response.json({ message: 'Forbidden' }, { status: 403 })
+    }
+
+    return Response.json(termin, { status: 200 })
+
 }
 
 export async function DELETE(request: NextRequest, context: PathParams) {
-    const { id } = await context.params;
-    const numRemoved = await programmDb().removeAsync({ _id: id }, { }); // gibt die Anzahl der entfernten Dokumente zurück
-
-    if (numRemoved > 0) {
-        return Response.json(
-            { message: 'Termin gelöscht' },
-            { status: 200 },
-        )
+    //Zugriff nur für angemeldete Benutzer
+    const jwtToken = getJwtHeader(request)
+    const { _userId, role } = await verifyToken(jwtToken)
+    if (!_userId) {
+        return Response.json({ message: 'Unauthorized' }, { status: 401 })
     }
 
-    return Response.json(
-        { message: 'Termin nicht gefunden' }, 
-        { status: 404 },
-    )
+
+
+    const { id } = await context.params;
+    const termin = await programmDb().findOneAsync({ _id: id });
+
+    if (!termin) {
+        return Response.json({ message: 'Termin nicht gefunden' }, { status: 404 })
+    }
+
+    // Schutz: darf nur eigenen Termin löschen
+    if (termin._userId !== _userId && role !== "admin") {
+        return Response.json({ message: 'Forbidden' }, { status: 403 })
+    }
+
+    await programmDb().removeAsync({ _id: id }, {});
+
+    return Response.json({ message: 'Termin gelöscht' }, { status: 200 })
+
 }
 
 export async function PUT(request: NextRequest, context: PathParams) {
+    //Zugriff nur für angemeldete Benutzer
+    const jwtToken = getJwtHeader(request)
+    const { _userId, role } = await verifyToken(jwtToken)
+    if (!_userId) {
+        return Response.json({ message: 'Unauthorized' }, { status: 401 })
+    }
+
+
+
     const { id } = await context.params
 
     const body = await request.json();

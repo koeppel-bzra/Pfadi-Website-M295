@@ -1,9 +1,11 @@
 import Datastore from '@seald-io/nedb';
 import {z} from 'zod';
+import { userDb } from './user';
 
 export const Programm = z.object({
     _id: z.string().optional(),
     kategorieId: z.string(),
+    _userId: z.string(),
     title: z.string(),
     location: z.string(),
     mitnehmen: z.string().optional(),

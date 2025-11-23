@@ -1,0 +1,63 @@
+/* Auth Status Styling */
+
+#auth-status {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.auth-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(76, 175, 80, 0.15);
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.username-display {
+    color: rgba(219, 219, 219, 0.9);
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.logout-btn {
+    color: var(--background-black);
+    background-color: var(--primary-white);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.logout-btn:hover {
+    background-color: rgb(218, 28, 28);
+    color: var(--title-white);
+}
+
+.logout-btn:active {
+    transform: scale(0.98);
+}
+
+.auth-login-link img {
+    width: 45px;
+    height: 45px;
+    
+}
+
+.auth-login-link:hover {
+    transform: translateY(5px);
+}
+
+.username-display {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}

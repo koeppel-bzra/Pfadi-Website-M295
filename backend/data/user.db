@@ -1,3 +1,2 @@
-{"username":"admin","passwordHash":"$2b$10$fFyKtFzcXrqiSrvFa85jC.mnha91sD0hDt9pZtZgxvxr8OLlKcpkO","role":"admin","_id":"KXtTh6wznaf1hwGt"}
-{"username":"tn","passwordHash":"$2b$10$aWOlmNLd82XfDVy5pK0Uz.TP59vmI78kkbRqIOpammKThaRmGF4pu","role":"user","_id":"buYDhgcE7UaKhBhY"}
-{"username":"tn","passwordHash":"$2b$10$R0/5m4WXKqN4rKnc4eDTaewf3X2Ew8doFlGCuU5LdEk.otnhfM62W","role":"user","_id":"buYDhgcE7UaKhBhY"}
+{"username":"gehrig","passwordHash":"$2b$10$eA.NkWHGRREW8Z6I2tr/n.ZP.IMQEDKCQhBoqo/7gXTYpJVFLcbdy","role":"user","_id":"BW1NGjT2bZXiWTD4"}
+{"username":"adminfasdf","passwordHash":"$2b$10$YrCD9fyFegDz/q3DhLsC9eCPapo3uWSWHZMsGbT7xPxguizu.OCM6","role":"admin","_id":"kSRjoDBxSwN0yDkG"}

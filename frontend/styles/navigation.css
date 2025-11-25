@@ -291,7 +291,6 @@ main {
 
 .view {
     display: flex;
-    justify-content: space-between;
 }
 
 .left {
@@ -325,7 +324,6 @@ main {
 
 .container {
     display: flex;
-    justify-content: space-between;
     gap: 30px;
 }
 

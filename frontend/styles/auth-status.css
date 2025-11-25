@@ -9,11 +9,9 @@
 .auth-logged-in {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(76, 175, 80, 0.15);
     padding: 8px 15px;
     border-radius: 8px;
-    border: 1px solid rgba(76, 175, 80, 0.3);
+    gap: 10px;
 }
 
 .username-display {
@@ -46,22 +44,10 @@
 }
 
 .profile-edit-link {
-    color: var(--primary-white);
-    background-color: rgba(100, 150, 200, 0.8);
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-block;
+    font-size: 10px;
 }
 
 .profile-edit-link:hover {
-    background-color: rgba(100, 150, 200, 1);
     color: var(--title-white);
 }
 
@@ -83,5 +69,4 @@
     text-align: center;
     align-items: center;
     display: flex;
-    gap: 10px;
 }

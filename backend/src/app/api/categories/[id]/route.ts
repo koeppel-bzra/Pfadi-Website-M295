@@ -22,7 +22,6 @@ export async function GET(request: NextRequest, context: PathParams) {
 
 
 export async function DELETE(request: NextRequest, context: PathParams) {
-    // Authentifizierung erforderlich
     const jwtToken = getJwtHeader(request)
     const payload = await verifyToken(jwtToken)
     const _userId = payload._userId as string
@@ -32,7 +31,6 @@ export async function DELETE(request: NextRequest, context: PathParams) {
     }
 
     const { id } = await context.params;
-    // removeAsync gibt die Anzahl der gelöschten Dokumente zurück
     const numRemoved = await kategorieDb().removeAsync({ _id: id }, { });
 
     if (numRemoved > 0) {
@@ -50,7 +48,6 @@ export async function DELETE(request: NextRequest, context: PathParams) {
 
 
 export async function PUT(request: NextRequest, context: PathParams) {
-    // Authentifizierung erforderlich
     const jwtToken = getJwtHeader(request)
     const payload = await verifyToken(jwtToken)
     const _userId = payload._userId as string
@@ -61,7 +58,6 @@ export async function PUT(request: NextRequest, context: PathParams) {
 
     const { id } = await context.params
 
-    // Validiere neue Daten
     const body = await request.json();
     const parsed = Kategorie.safeParse(body);
 
@@ -74,7 +70,6 @@ export async function PUT(request: NextRequest, context: PathParams) {
 
     const data = parsed.data;
 
-    // Aktualisiere nur die gesendeten Felder
     const result = await kategorieDb().updateAsync(
         {_id: id},
         {$set: data},

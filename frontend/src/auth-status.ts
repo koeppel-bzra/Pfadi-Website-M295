@@ -11,7 +11,7 @@ window.handleLogout = function() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('username');
     alert('Du wurdest abgemeldet.');
-    window.location.href = './index.html';
+    window.location.href = '/agenda.html';
 }
 
 
@@ -28,6 +28,7 @@ export function updateAuthStatus() {
         statusContainer.innerHTML = `
             <div class="auth-logged-in">
                 <span class="username-display"><img src="/images/Bild2.svg" alt="User Icon" width="25px" height="25px"> ${username}</span>
+                <a href="/pages/profile.html" class="profile-edit-link">Profil bearbeiten</a>
                 <button class="logout-btn" onclick="window.handleLogout()">Abmelden</button>
             </div>
         `;
@@ -43,7 +44,7 @@ export function logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('username');
     alert('Du wurdest abgemeldet.');
-    window.location.href = '/pages/agenda.html';
+    window.location.href = '/agenda.html';
 }
 
 

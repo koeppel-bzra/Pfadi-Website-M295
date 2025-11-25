@@ -31,6 +31,29 @@ export async function login(username: string, password: string) {
     return response.json(); // { username, token }
 }
 
+export async function updateProfile(username: string, password?: string) {
+    const token = getJwt();
+    if (!token) throw new Error("Not authenticated");
+
+    const body: any = { username };
+    if (password) {
+        body.password = password;
+    }
+
+    const response = await fetch(`${environment.apiRoot}/users/profile`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    });
+
+    if (!response.ok) throw new Error("Profile update failed");
+
+    return response.json();
+}
+
 /**
  * Speichert einen JWT-Token im localStorage
  * 

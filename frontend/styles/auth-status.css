@@ -45,6 +45,30 @@
     transform: scale(0.98);
 }
 
+.profile-edit-link {
+    color: var(--primary-white);
+    background-color: rgba(100, 150, 200, 0.8);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.profile-edit-link:hover {
+    background-color: rgba(100, 150, 200, 1);
+    color: var(--title-white);
+}
+
+.profile-edit-link:active {
+    transform: scale(0.98);
+}
+
 .auth-login-link img {
     width: 45px;
     height: 45px;

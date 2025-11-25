@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil bearbeiten</title>
+    <link rel="stylesheet" href="../styles/register.css">
+    <link rel="stylesheet" href="../styles/navigation.css">
+    <link rel="stylesheet" href="../styles/auth-status.css">
+    <script type="module" src="../src/auth-status.ts"></script>
+    <script type="module" src="../src/views/profile.ts"></script>
+</head>
+<body>
+    <div class="all">
+        <h1>Profil bearbeiten</h1>
+        <form class="inputs">
+            <div class="input-inside">
+                <label>Benutzername:</label>
+                <input title="Benutzername" type="text" placeholder="Benutzername">
+            </div>
+
+            <div class="input-inside">
+                <label>Passwort (optional):</label>
+                <input title="Passwort" type="password" placeholder="Neues Passwort">
+            </div>
+
+            <div class="input-inside">
+                <label>Passwort wiederholen:</label>
+                <input title="Passwort" type="password" placeholder="Passwort erneut eingeben">
+            </div>
+
+        </form>
+
+        <input type="submit" class="submit-btn" value="Speichern"></input>
+    </div>
+</body>
+</html>

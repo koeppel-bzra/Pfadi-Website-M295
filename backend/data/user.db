@@ -1,2 +1,3 @@
-{"username":"user","passwordHash":"$2b$10$5R1lAGcNKofGiXc7GKA69.HJmstSqWsH/ttl5I6lSTkzK3twA5goq","role":"user","_id":"WN6usJgYpyzMPTZz"}
-{"username":"admin","passwordHash":"$2b$10$6BOKTLyRmdwN8Y5C2ZscSOHItmYwDxkLG32SI.hmYWW8iQfQdM9ke","role":"admin","_id":"qjAzqfOwYR0faz6p"}
+{"username":"admin","passwordHash":"$2b$10$fFyKtFzcXrqiSrvFa85jC.mnha91sD0hDt9pZtZgxvxr8OLlKcpkO","role":"admin","_id":"KXtTh6wznaf1hwGt"}
+{"username":"tn","passwordHash":"$2b$10$aWOlmNLd82XfDVy5pK0Uz.TP59vmI78kkbRqIOpammKThaRmGF4pu","role":"user","_id":"buYDhgcE7UaKhBhY"}
+{"username":"tn","passwordHash":"$2b$10$R0/5m4WXKqN4rKnc4eDTaewf3X2Ew8doFlGCuU5LdEk.otnhfM62W","role":"user","_id":"buYDhgcE7UaKhBhY"}

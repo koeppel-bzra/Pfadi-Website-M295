@@ -5,15 +5,7 @@ import { getJwtHeader } from "@/lib/jwt/jwt-auth";
 
 declare type PathParams = { params: Promise<{ id: string }> };
 
-/**
- * GET /api/categories/:id
- * 
- * Ruft eine einzelne Kategorie ab (KEINE Authentifizierung nötig)
- * 
- * Erfolg (200): Kategorie-Details
- * Fehler:
- * - 404: Kategorie nicht gefunden
- */
+
 export async function GET(request: NextRequest, context: PathParams) {
     const { id } = await context.params;
     const termin = await kategorieDb().findOneAsync({ _id: id });
@@ -28,17 +20,7 @@ export async function GET(request: NextRequest, context: PathParams) {
     )
 }
 
-/**
- * DELETE /api/categories/:id
- * 
- * Löscht eine Kategorie
- * Authentifizierung: Erforderlich
- * 
- * Erfolg (200): "Kategorie gelöscht"
- * Fehler:
- * - 401: Unauthorized
- * - 404: Kategorie nicht gefunden
- */
+
 export async function DELETE(request: NextRequest, context: PathParams) {
     // Authentifizierung erforderlich
     const jwtToken = getJwtHeader(request)
@@ -66,24 +48,7 @@ export async function DELETE(request: NextRequest, context: PathParams) {
     )
 }
 
-/**
- * PUT /api/categories/:id
- * 
- * Aktualisiert eine Kategorie
- * Authentifizierung: Erforderlich
- * 
- * Anfrage:
- * {
- *   "name": "Neuer Name",
- *   "farben": ["rot"]
- * }
- * 
- * Erfolg (200): "Kategorie angepasst"
- * Fehler:
- * - 400: Ungültige Daten
- * - 401: Unauthorized
- * - 404: Kategorie nicht gefunden
- */
+
 export async function PUT(request: NextRequest, context: PathParams) {
     // Authentifizierung erforderlich
     const jwtToken = getJwtHeader(request)

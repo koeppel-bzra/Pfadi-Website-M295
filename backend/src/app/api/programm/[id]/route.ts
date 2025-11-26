@@ -64,7 +64,6 @@ export async function PUT(request: NextRequest, context: PathParams) {
     }
     
     const { id } = await context.params
-    const { id } = await context.params
     
     const termin = await programmDb().findOneAsync({ _id: id });
     if (!termin) {

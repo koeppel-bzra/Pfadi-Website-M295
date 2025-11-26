@@ -1,38 +1,76 @@
-# Backend - Template
+# Backend API - Pfadi-Website
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+REST API für die Pfadi-Website. Verwaltet Benutzer, Kategorien und Ereignisse.
 
-## Getting Started
+## Quick Start
 
-First, run the development server:
+Server läuft auf `http://localhost:3000`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Authentifizierung
+
+Alle geschützten Endpoints benötigen JWT-Token im Header:
+
+```
+Authorization: Bearer <TOKEN>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Token wird bei Login/Register zurückgegeben.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Benutzer
 
-## Learn More
+- `POST /api/users/login` - Anmelden
+- `POST /api/users/register` - Registrieren
+- `PATCH /api/users/profile` - Profil ändern (Auth erforderlich)
 
-To learn more about Next.js, take a look at the following resources:
+### Kategorien
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `GET /api/categories` - Alle abrufen
+- `GET /api/categories/:id` - Eine abrufen
+- `POST /api/categories` - Erstellen (Auth erforderlich)
+- `PUT /api/categories/:id` - Ändern (Auth erforderlich)
+- `DELETE /api/categories/:id` - Löschen (Auth erforderlich)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Ereignisse (Programm)
 
-## Deploy on Vercel
+- `GET /api/programm` - Alle abrufen (Auth erforderlich)
+- `GET /api/programm/:id` - Eine abrufen (Auth erforderlich)
+- `POST /api/programm` - Erstellen (Auth erforderlich)
+- `PUT /api/programm/:id` - Ändern (Auth erforderlich)
+- `DELETE /api/programm/:id` - Löschen (Auth erforderlich)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Fehler-Codes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Code | Bedeutung    |
+| ---- | ------------ |
+| 200  | OK           |
+| 201  | Created      |
+| 400  | Bad Request  |
+| 401  | Unauthorized |
+| 403  | Forbidden    |
+| 404  | Not Found    |
+| 409  | Conflict     |
+| 500  | Server Error |
+
+## Standard-Benutzer
+
+Nach dem ersten Start wird automatisch erstellt:
+
+- **Username:** `admin`
+- **Passwort:** `user1234`
+
+## Datenbank
+
+Verwendet NeDB (dateibasiert):
+
+- `./data/user.db` - Benutzer
+- `./data/programm.db` - Ereignisse
+- `./data/categories.db` - Kategorien
+
+## Sicherheit
+
+- Passwörter mit bcryptjs gehashed
+- JWT Token verfällt nach 30 Tagen
+- Normale User sehen nur ihre Ereignisse
+- Admin sieht alle Ereignisse
